@@ -1,6 +1,7 @@
 package com.yondu.foo.cms.domains;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,23 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.yondu.foo.generic.domains.BaseTb;
+
 @Entity
-@Table
-public class UserTb extends BaseEntity{
-	private int Userid;
+@Table(name="user_tb")
+public class UserTb extends BaseTb{
+	
+	private Long id;
 	private String username, password, email, phone, address;
 	private Date birthDay;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="user_id")
-	public int getUserid() {
-		return Userid;
-	}
-	
-	public void setUserid(int userid) {
-		Userid = userid;
-	}
 	
 	@Column(name="username")
 	public String getUsername() {
@@ -76,6 +70,17 @@ public class UserTb extends BaseEntity{
 	
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id", unique=true, nullable=false)
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

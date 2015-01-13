@@ -1,4 +1,4 @@
-package com.yondu.foo.cms.domains;
+package com.yondu.foo.generic.domains;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseTb {
 
 	protected String createdBy;
 	protected String updatedBy;

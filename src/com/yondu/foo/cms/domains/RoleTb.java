@@ -1,15 +1,39 @@
 package com.yondu.foo.cms.domains;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.yondu.foo.generic.domains.BaseTb;
 
 
 @Entity
-@Table
-public class RoleTb extends BaseEntity {
+@Table(name="role_tb")
+public class RoleTb extends BaseTb {
 	
-	private int roleId;
-	private String role;
+	private Long id;
+	private String description;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id", unique=true, nullable=false)
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	@Column(name="description", nullable=false, unique=true)
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 	
 }
