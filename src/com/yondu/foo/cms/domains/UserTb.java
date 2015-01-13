@@ -1,8 +1,11 @@
 package com.yondu.foo.cms.domains;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +17,19 @@ public class UserTb extends BaseEntity{
 	private int Userid;
 	private String username, password, email, phone, address;
 	private Date birthDay;
+	private String role;
 	
+	
+	@Column
+	@Enumerated(EnumType.STRING)
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_id")
@@ -68,8 +83,7 @@ public class UserTb extends BaseEntity{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-//	hello
-//	world
+
 	@Column(name="address")
 	public String getAddress() {
 		return address;
@@ -78,6 +92,7 @@ public class UserTb extends BaseEntity{
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
 	
 	
 }
