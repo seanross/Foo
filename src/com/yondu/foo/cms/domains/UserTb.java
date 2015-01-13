@@ -21,7 +21,6 @@ public class UserTb extends BaseTb{
 	private String username, password, email, phone, address;
 	private Date birthDay;
 	
-	
 	@Column(name="username")
 	public String getUsername() {
 		return username;
