@@ -47,7 +47,7 @@ public abstract class BaseTb {
 		this.updatedDate = updatedDate;
 	}
 	
-	@Column(name="isEnabled")
+	@Column(name="is_enabled")
 	public boolean isEnabled() {
 		return isEnabled;
 	}
