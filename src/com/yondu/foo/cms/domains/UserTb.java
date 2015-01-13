@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.yondu.foo.generic.domains.BaseTb;
 
@@ -29,6 +31,7 @@ public class UserTb extends BaseTb{
 		this.username = username;
 	}
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="birthday")
 	public Date getBirthDay() {
 		return birthDay;
@@ -37,7 +40,7 @@ public class UserTb extends BaseTb{
 		this.birthDay = birthDay;
 	}
 	
-	@Column(name="password")
+	@Column(name="password", nullable=false)
 	public String getPassword() {
 		return password;
 	}
