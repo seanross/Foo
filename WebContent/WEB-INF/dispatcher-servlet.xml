@@ -29,4 +29,48 @@
 	     </list>  
 	      </property>  
 	</bean>  
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test" />
+		<property name="user" value="root" />
+		<property name="password" value="1234" />
+		
+		<property name="acquireIncrement" value="1" />
+        <property name="minPoolSize" value="3" />
+        <property name="maxPoolSize" value="20" />
+        <property name="idleConnectionTestPeriod" value="300" />
+        <property name="maxIdleTimeExcessConnections" value="240" />
+	</bean>
+ 
+	<!-- Hibernate session factory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	   <property name="dataSource" ref="dataSource"/>
+	   <property name="packagesToScan" value="com.sean"/>
+	   <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+            </props>
+        </property>
+	 </bean>
+ 
+	<!-- MUST have transaction manager, using aop and aspects  -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+ 
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	    <tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="*" />
+	    </tx:attributes>
+	</tx:advice>
+ 
+ 	<tx:annotation-driven/>
+ 
+ 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+ 	
 </beans>
