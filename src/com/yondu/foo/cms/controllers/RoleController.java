@@ -17,18 +17,23 @@ public class RoleController {
 	@Autowired
 	RoleService roleService;
 
-	@RequestMapping(value="/add.htm", method=RequestMethod.GET)
+	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String add(Model model){
 		model.addAttribute("roleModelAttribute", new RoleTb());
 		return "roleAdd";
 	}
 	
-	@RequestMapping(value="/add.htm", method=RequestMethod.POST)
+	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String save(@ModelAttribute("roleModelAttribute") RoleTb role, Model model){
 		roleService.save(role);
 		return "roleAdd";
 	}
 	
+	@RequestMapping(value="/list")
+	public String list(Model model){
+		model.addAttribute("roles", roleService.getAll());
+		return "roleList";
+	}
 	
 	
 }

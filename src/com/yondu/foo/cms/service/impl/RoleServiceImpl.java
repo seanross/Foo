@@ -1,5 +1,7 @@
 package com.yondu.foo.cms.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,6 +39,12 @@ public class RoleServiceImpl implements RoleService {
 	@Transactional(readOnly=true)
 	public RoleTb findById(String id) {
 		return roleDao.findById(id);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<RoleTb> getAll() {
+		return roleDao.getAll();
 	}
 
 }

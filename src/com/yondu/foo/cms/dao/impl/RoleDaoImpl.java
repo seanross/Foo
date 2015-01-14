@@ -1,5 +1,7 @@
 package com.yondu.foo.cms.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,13 +28,18 @@ public class RoleDaoImpl implements RoleDao {
 
 	@Override
 	public void delete(RoleTb role) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public RoleTb findById(String id) {
 		return (RoleTb) sessionFactory.getCurrentSession().get(RoleTb.class, id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<RoleTb> getAll() {
+		return sessionFactory.getCurrentSession().createCriteria(RoleTb.class).list();
 	}
 
 }
