@@ -13,9 +13,9 @@
       <put-attribute name="body"   value="CONTENT GOES HERE"/>
    </definition>  
    
-   <definition name="addRole" extends="dashboardTemplate">
-    	<put-attribute name="title"  value="Add Roles"/>  
-   		<put-attribute name="body" value="/WEB-INF/pages/cms/addRole.jsp" />
+   <definition name="roleAdd" extends="dashboardTemplate">
+    	<put-attribute name="title"  value="Add Role"/>  
+   		<put-attribute name="body" value="/WEB-INF/pages/cms/role/add.jsp" />
    </definition>
     
 </tiles-definitions>
